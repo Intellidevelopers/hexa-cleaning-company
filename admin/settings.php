@@ -47,22 +47,13 @@
                                             <h5 class="card-title">Website Setting</h5>
                                             <p>Here is your basic settings of your website.</p>
                                             <?=  alertMessage(); ?>
+                                        
                                             <form action="settings-code.php" class="gy-3 form-settings" method="POST">
+                                                <?php
+                                                $setting = getById('setting',1);
+                                                ?>
 
-                                            <?php
-                                                
-                                                   $paramResult = checkParamId('id');
-                                                   if(!is_numeric($paramResult)){
-                                                        echo '<h5>'.$paramResult.'</h5>';
-                                                        return false;
-                                                   }
-
-                                                   $user = getById('setting', checkParamId('id'));
-                                                   if($user['status'] == 200){
-                                                    
-                                                    ?>
-
-                                                <input type="hidden" name="userId" value="<?= $user['data']['id']; ?>">
+                                                <input type="hidden" name="settingId" value="<?= $setting['data']['id'] ?? 'insert'?>">
 
                                                 <div class="row g-3 align-center">
                                                     <div class="col-lg-5">
@@ -74,7 +65,7 @@
                                                     <div class="col-lg-7">
                                                         <div class="form-group">
                                                             <div class="form-control-wrap">
-                                                                <input type="text" class="form-control" id="title" value="<?= $user['data']['title']; ?>">
+                                                                <input type="text" class="form-control" value="<?= $setting['data']['title'] ?? ""?>" name="title" id="title" value="">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -89,7 +80,7 @@
                                                     <div class="col-lg-7">
                                                         <div class="form-group">
                                                             <div class="form-control-wrap">
-                                                                <input type="text" class="form-control" id="email" value="<?= $user['data']['email']; ?>">
+                                                                <input type="text" class="form-control" value="<?= $setting['data']['email'] ?? ""?>" name="email" id="email">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -104,7 +95,7 @@
                                                     <div class="col-lg-7">
                                                         <div class="form-group">
                                                             <div class="form-control-wrap">
-                                                                <input type="text" class="form-control" id="copyright" value="<?= $user['data']['copyright']; ?>">
+                                                                <input type="text" class="form-control" value="<?= $setting['data']['copyright'] ?? ""?>" name="copyright" id="copyright">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -119,7 +110,7 @@
                                                     <div class="col-lg-7">
                                                         <div class="form-group">
                                                             <div class="form-control-wrap">
-                                                                <input type="text" class="form-control" id="phone" value="<?= $user['data']['phone']; ?>">
+                                                                <input type="text" class="form-control" value="<?= $setting['data']['phone'] ?? ""?>" name="phone" id="phone">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -134,7 +125,7 @@
                                                     <div class="col-lg-7">
                                                         <div class="form-group">
                                                             <div class="form-control-wrap">
-                                                                <input type="text" class="form-control" id="address" value="<?= $user['data']['address']; ?>">
+                                                                <input type="text" class="form-control" value="<?= $setting['data']['address'] ?? ""?>" name="address" id="address">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -148,28 +139,12 @@
                                                     <div class="col-lg-7">
                                                         <div class="form-group">
                                                             <div class="form-control-wrap">
-                                                                <input type="text" class="form-control" name="url" value="<?= $user['data']['url']; ?>">
+                                                                <input type="text" class="form-control" value="<?= $setting['data']['url'] ?? ""?>" name="url" name="url">
                                                                 </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row g-3 align-center">
-                                                    <div class="col-lg-5">
-                                                        <div class="form-group"><label class="form-label"
-                                                                for="site-off">Maintanance Mode</label><span
-                                                                class="form-note">Enable to make website make
-                                                                offline.</span></div>
-                                                    </div>
-                                                    <div class="col-lg-7">
-                                                        <div class="form-group">
-                                                            <div class="custom-control custom-switch"><input
-                                                                    type="checkbox" class="custom-control-input"
-                                                                    name="reg-public" id="site-off"><label
-                                                                    class="custom-control-label"
-                                                                    for="site-off">Offline</label></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="row g-3">
                                                     <div class="col-lg-7 offset-lg-5">
                                                         <div class="form-group mt-2">
@@ -177,13 +152,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <?php
-                                                            }else{
-                                                                echo '<h5>'.$user['message'].'</h5>';
-                                                            }
-
-                                                            ?>
+                                                
                                             </form>
+                                            
                                         </div>
                                     </div>
                                 </div>
