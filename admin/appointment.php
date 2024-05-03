@@ -8,10 +8,10 @@
 <html lang="en">
 
     
-<!-- Mirrored from coderthemes.com/hyper/saas/apps-email-inbox.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Apr 2024 21:13:33 GMT -->
+<!-- Mirrored from coderthemes.com/hyper/saas/apps-email-read.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Apr 2024 21:13:35 GMT -->
 <head>
         <meta charset="utf-8" />
-        <title>Inbox | Hexa - Appointment</title>
+        <title>Email Read | Hyper - Responsive Bootstrap 5 Admin Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -406,7 +406,7 @@
                                 </div>
 
                                 <!-- item-->
-                                <a href="admin-profile.php" class="dropdown-item">
+                                <a href="javascript:void(0);" class="dropdown-item">
                                     <i class="mdi mdi-account-circle me-1"></i>
                                     <span>My Account</span>
                                 </a>
@@ -542,7 +542,12 @@
                                 <span>Teams </span>
                             </a>
                         </li>
-
+                        <li class="side-nav-item">
+                            <a href="projects.php" class="side-nav-link">
+                                <i class="uil-comments-alt"></i>
+                                <span>Projects </span>
+                            </a>
+                        </li>
                         <!-- Help Box -->
                         <div class="help-box text-white text-center">
                             <a href="javascript: void(0);" class="float-end close-btn text-white">
@@ -563,7 +568,7 @@
                 </div>
             </div>
             <!-- ========== Left Sidebar End ========== -->
-            
+
             <!-- ============================================================== -->
             <!-- Start Page Content here -->
             <!-- ============================================================== -->
@@ -573,92 +578,72 @@
 
                     <!-- Start Content-->
                     <div class="container-fluid">
-                        
-                        <!-- start page email-title -->
-                        <!-- start page title -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box">
-                                    <div class="page-title-right">
-                                        <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Email</a></li>
-                                            <li class="breadcrumb-item active">Inbox</li>
-                                        </ol>
-                                    </div>
-                                    <h4 class="page-title">Inbox</h4>
+    <?php 
+    // Assuming getAll() retrieves appointment details from the database
+    $appointments = getAll('appointment');
+    
+    if ($appointments !== false && mysqli_num_rows($appointments) > 0) {
+        // Loop through each appointment
+        while ($userItem = mysqli_fetch_assoc($appointments)) {
+    ?>
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Email</a></li>
+                            <li class="breadcrumb-item active">Email Read</li>
+                        </ol>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mt-3">
+                            <!-- Display appointment details -->
+                            <h5 class="font-18"><?= $userItem['name']; ?></h5>
+                            <hr/>
+                            <div class="d-flex mb-3 mt-1">
+                                <!-- Assuming image URL is stored in the database -->
+                                <img class="d-flex me-2 rounded-circle" src="assets/images/users/avatar-2.jpg" alt="placeholder image" height="32">
+                                <div class="w-100 overflow-hidden">
+                                    <small class="float-end"><?= $userItem['created_date']; ?></small>
+                                    <h6 class="m-0 font-14"><?= $userItem['name']; ?></h6>
+                                    <small class="text-muted">From: <?= $userItem['email']; ?></small>
                                 </div>
                             </div>
+                            <p><?= $userItem['message']; ?></p>
+                            <p><b>Category:</b> <?= $userItem['category']; ?></p>
+                            <hr/>
+                            <td>
+                                <a style="width: 100px;" href="appointment-delete.php?id=<?= $userItem['id']; ?>" 
+                                class="action-icon delete-btn" data-id="<?= $userItem['id']; ?>"><button type="button" class="btn btn-primary" data-bs-toggle="button">Delete Message</button></a>
+                            </td>
                         </div>
-                        <!-- end page title -->
-                        <!-- end page email-title --> 
-
-                        <div class="row">
-
-                            <!-- Right Sidebar -->
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                       
-                                        <!-- End Left sidebar -->
-
-
-                                            <div class="mt-3">
-                                                <ul class="email-list">
-                                                <?php 
-                                                    $appointment = getAll('appointment');
-                                                    if(mysqli_num_rows($appointment) > 0){
-                                                        foreach($appointment as $userItem){
-                                                            ?>
-                                                    <li class="unread">
-                                                        <div class="email-sender-info">
-                                                            <div class="checkbox-wrapper-mail">
-                                                                <div class="form-check">
-                                                                    <input type="checkbox" class="form-check-input" id="mail1">
-                                                                    <label class="form-check-label" for="mail1"></label>
-                                                                </div>
-                                                            </div>
-                                                            <span class="star-toggle mdi mdi-star-outline text-warning"></span>
-                                                            <a href="javascript: void(0);" class="email-title"><?= $userItem['name']; ?></a>
-                                                        </div>
-                                                        <div class="email-content">
-                                                            <a href="javascript: void(0);" class="email-subject"><?= $userItem['message']; ?></a>
-                                                        </div>
-                                                        
-                                                        <div class="email-action-icons">
-                                                            <ul class="list-inline">
-                                                                <li class="list-inline-item">
-                                                                    <a href="javascript: void(0);"><i class="mdi mdi-archive email-action-icons-item"></i></a>
-                                                                </li>
-                                                                <li class="list-inline-item">
-                                                                    <a href="javascript: void(0);" class="delete-btn" data-id="<?= $userItem['id']; ?>"><i class="mdi mdi-delete email-action-icons-item"></i></a>
-                                                                </li>
-                                                                <li class="list-inline-item">
-                                                                    <a href="javascript: void(0);"><i class="mdi mdi-email-open email-action-icons-item"></i></a>
-                                                                </li>
-                                                                <li class="list-inline-item">
-                                                                    <a href="javascript: void(0);"><i class="mdi mdi-clock email-action-icons-item"></i></a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </li>
-                                                    <?php
-                                                        }
-                                                    }else{
-                                                        ?>
-                                                        <tr>
-                                                            <td colspan="8">
-                                                                No Records Found
-                                                            </td>
-                                                        </tr>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                    
-                                                </ul>
-                                            </div>
-                                            <!-- end .mt-4 -->
-                                            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php
+        }
+    } else {
+    ?>
+        <div class="row">
+            <div class="col-12">
+                <p>No Records Found</p>
+            </div>
+        </div>
+    <?php
+    }
+    ?>
+</div> <!-- container -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -678,45 +663,20 @@ document.addEventListener('DOMContentLoaded', function() {
             }).then((result) => {
                 // If user confirms deletion, redirect to delete script with user ID
                 if (result.isConfirmed) {
-                    window.location.href = 'message-delete.php?id=' + userId;
+                    window.location.href = 'appointment-delete.php?id=' + userId;
                 }
             });
         });
     });
 });
 </script>
-                                            <div class="row">
-                                                <div class="col-7 mt-1">
-                                                    Showing 1 - 20 of 289
-                                                </div> <!-- end col-->
-                                                <div class="col-5">
-                                                    <div class="btn-group float-end">
-                                                        <button type="button" class="btn btn-light btn-sm"><i class="mdi mdi-chevron-left"></i></button>
-                                                        <button type="button" class="btn btn-info btn-sm"><i class="mdi mdi-chevron-right"></i></button>
-                                                    </div>
-                                                </div> <!-- end col-->
-                                            </div>
-                                            <!-- end row-->
-                                        </div> 
-                                        <!-- end inbox-rightbar-->
-                                    </div>
-                                    <!-- end card-body -->
-                                    <div class="clearfix"></div>
-                                </div> <!-- end card-box -->
-
-                            </div> <!-- end Col -->
-                        </div><!-- End row -->
-                        
-                    </div> <!-- container -->
-
                 </div> <!-- content -->
-
 
                 <!-- Compose Modal -->
                 <div id="compose-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="compose-header-modalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header modal-colored-header bg-primary">
+                            <div class="modal-header modal-colored-header text-bg-primary">
                                 <h4 class="modal-title" id="compose-header-modalLabel">New Message</h4>
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
@@ -745,7 +705,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
-
 
                 <!-- Footer Start -->
                 <footer class="footer">
@@ -1477,5 +1436,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
     </body>
 
-<!-- Mirrored from coderthemes.com/hyper/saas/apps-email-inbox.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Apr 2024 21:13:34 GMT -->
+<!-- Mirrored from coderthemes.com/hyper/saas/apps-email-read.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Apr 2024 21:13:35 GMT -->
 </html>

@@ -10,9 +10,23 @@ require './config/function.php';
 <!-- Mirrored from demo.voidcoders.com/htmldemo/hexa/main-files/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Apr 2024 17:33:54 GMT -->
 
 <head>
-
         <meta charset="utf-8">
-        <title>Home | Hexa Cleaning Agency</title>
+<?php
+
+$setting = getAll('setting');
+if(mysqli_num_rows($setting) > 0){
+        foreach($setting as $userItem){
+?>
+
+        <title><?= $userItem['title'] ?></title>
+<?php
+        }
+}else{
+        ?>
+        <title>No tile</title>
+<?php
+}
+?>
         <meta name="description" content>
         <meta name="author" content>
         <meta name="keywords" content>
@@ -106,9 +120,8 @@ require './config/function.php';
                                                         </nav>
                                                 </div>
                                                 <div class="top-button">
-                                                        <a href="tel:+123456987" class="btn-1"><i
-                                                                        class="flaticon-phone-call"></i> (000)
-                                                                123 456 987</a>
+                                                        <a href="tel:<?= $userItem['phone']; ?>" class="btn-1"><i
+                                                                        class="flaticon-phone-call"></i> <?= $userItem['phone']; ?> </a>
                                                 </div>
                                         </div>
                                 </div>
@@ -238,8 +251,7 @@ require './config/function.php';
                                                         </div>
                                                         <div class="single-link">
                                                                 <a href="tel:+2348088886823" class="cal-num"> <i
-                                                                                class="flaticon-phone-call"></i> (234)
-                                                                        808 888 6823</a>
+                                                                                class="flaticon-phone-call"></i> <?= $userItem['phone']; ?> </a>
                                                         </div>
                                                 </div>
                                         </div>
@@ -464,8 +476,7 @@ require './config/function.php';
                                 <div class="call-area">
                                         <h3>Free call to Appointment</h3>
                                         <a href="tel:+2348088886823" class="btn-1"> <i
-                                                class="flaticon-phone-call"></i> (234)
-                                        808 888 6823</a>
+                                                class="flaticon-phone-call"></i> <?= $userItem['phone']; ?> </a>
                                 </div>
                         </div>
                 </div>
@@ -619,8 +630,7 @@ require './config/function.php';
                         <div class="footer-top" data-aos="fade-up" data-aos-duration="1000">
                                 <h4>Want to Get 50% Off?
                                         Save Time & Money</h4>
-                                <a href="tel:+2348088886823" class="btn-1"><i class="flaticon-phone-call"></i>(234) 808 888
-                                        6823</a>
+                                <a href="tel:<?= $userItem['phone']; ?>" class="btn-1"><i class="flaticon-phone-call"></i> <?= $userItem['phone']; ?> </a>
                                 <a data-toggle="modal" data-target="#myModal" href class="btn-2"> Appointment Now <i
                                                 class="flaticon-right-arrow"></i></a>
                         </div>
@@ -672,14 +682,13 @@ require './config/function.php';
                                                 <div class="page-links">
                                                         <h6>Contact</h6>
                                                         <ul>
-                                                                <li><i class="flaticon-place con-icon"></i> 02 Adegoke Bus Stop
-                                                                Orita Challenge Ibadan</li>
+                                                                <li><i class="flaticon-place con-icon"></i> <?= $userItem['address']; ?> </li>
                                                                 <li><i class="flaticon-email con-icon"></i> <a
-                                                                                href="mailto:adeagbojosiah1@gmail.com"
+                                                                                href="mailto:<?= $userItem['email']; ?>"
                                                                                 class="__cf_email__"
-                                                                                >adeagbojosiah1@gmail.com</a>
+                                                                                ><?= $userItem['email']; ?></a>
                                                                 </li>
-                                                                <li><i class="flaticon-phone con-icon"></i> (234) 808 888 6823</li>
+                                                                <li><i class="flaticon-phone con-icon"></i> <?= $userItem['phone']; ?> </li>
                                                         </ul>
                                                 </div>
                                         </div>
@@ -689,8 +698,8 @@ require './config/function.php';
         </div>
         <footer>
                 <div class="container">
-                        <p>Copyright © 2024 Hexa ! All Rights Reserved By <a href="https://voidcoders.com/"
-                                        target="blank">Ajtech</a></p>
+                        <p><?= $userItem['copyright']; ?> ! All Rights Reserved By <a href="<?= $userItem['url']; ?>"
+                                        target="blank"><?= $userItem['title']; ?></a></p>
                 </div>
         </footer>
 
@@ -710,7 +719,7 @@ require './config/function.php';
                                         <p>Nunc sed augue lacus viverra vitae congue. Enim tortor at auctor urna nunc id
                                                 cursus.</p>
                                                 <?=  alertMessage(); ?>
-                                        <form action="contact-code.php" class="row">
+                                        <form action="code.php" class="row" method="POST">
                                                 <div class="form-group col-md-6">
                                                         <input type="text" class="form-control" name="name"
                                                                 placeholder="Name" onfocus="this.placeholder = ''"
@@ -727,24 +736,28 @@ require './config/function.php';
                                                                 onblur="this.placeholder ='Your phone'">
                                                 </div>
                                                 <div class="form-group col-md-6">
+                                                        <input type="text" name="message" placeholder="Your message" class="form-control">
+                                                </div>
+
+                                                <!--<div class="form-group col-md-6">
                                                         <input type="date" class="form-control" name="both">
-                                                </div>
+                                                </div>-->
                                                 <div class="form-group col-md-6">
-                                                        <select class="form-control">
-                                                                <option>Select Services</option>
-                                                                <option>Home Cleaning</option>
-                                                                <option>Office Cleaning</option>
-                                                                <option>Commercial Cleaning</option>
+                                                        <select name="category" class="form-control">
+                                                                <option value="">Select Services</option>
+                                                                <option value="home">Home Cleaning</option>
+                                                                <option value="office">Office Cleaning</option>
+                                                                <option value="commercial">Commercial Cleaning</option>
                                                         </select>
                                                 </div>
-                                                <div class="form-group col-md-6">
-                                                        <select class="form-control">
-                                                                <option>Choose Plans</option>
-                                                                <option>Start Plan</option>
-                                                                <option>Popular Plan</option>
-                                                                <option>Premium Plan</option>
+                                                <!--<div class="form-group col-md-6">
+                                                        <select name="plan" class="form-control">
+                                                                <option value="">Choose Plans</option>
+                                                                <option value="starter" >Start Plan</option>
+                                                                <option value="popular" >Popular Plan</option>
+                                                                <option value="premium" >Premium Plan</option>
                                                         </select>
-                                                </div>
+                                                </div>-->
                                                 <button type="submit" name="book" class="btn-1">Booked</button>
                                         </form>
                                 </div>

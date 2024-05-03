@@ -105,3 +105,27 @@ function getTotalProducts(){
     $row = mysqli_fetch_assoc($result);
     return $row['total_products'];
 }
+
+function getTotalAppointments(){
+    global $conn;
+    $query = "SELECT COUNT(*) AS total_appointments FROM appointment"; // Assuming 'customers' is the name of your users table
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row['total_appointments'];
+}
+
+function getTotalFaq(){
+    global $conn;
+    $query = "SELECT COUNT(*) AS total_faq FROM faq"; // Assuming 'customers' is the name of your users table
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row['total_faq'];
+}
+
+function getTotalProjects(){
+    global $conn;
+    $query = "SELECT COUNT(*) AS total_project FROM projects"; // Assuming 'customers' is the name of your users table
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row['total_project'];
+}

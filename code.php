@@ -11,7 +11,7 @@ if (isset($_POST['book'])) {
     $message = $_POST['message'];
 
     // Prepare SQL query to insert data into the database
-    $sql = "INSERT INTO appointment (name, email, phone, category, message) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO appointment (name,email, phone, category, message) VALUES (?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $sql);
 
     // Bind parameters and execute the statement
@@ -20,7 +20,7 @@ if (isset($_POST['book'])) {
 
     // Check if the query was successful
     if ($result) {
-        redirect('index.php','Message sent successfully!');
+        redirect('success.php','Message sent successfully!');
     } else {
         echo "Error: " . mysqli_error($conn);
     }

@@ -543,6 +543,12 @@
                                 <span>Teams </span>
                             </a>
                         </li>
+                        <li class="side-nav-item">
+                            <a href="projects.php" class="side-nav-link">
+                                <i class="uil-comments-alt"></i>
+                                <span>Projects </span>
+                            </a>
+                        </li>
 
                         <!-- Help Box -->
                         <div class="help-box text-white text-center">
