@@ -495,7 +495,7 @@
                         <li class="side-nav-item">
                             <a href="index.php" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                                 <i class="uil-home-alt"></i>
-                                <span class="badge bg-success float-end">5</span>
+                                <span class="badge bg-success float-end"><?php echo getTotalAppointments(); ?></span>
                                 <span> Dashboards </span>
                             </a>
                         </li>

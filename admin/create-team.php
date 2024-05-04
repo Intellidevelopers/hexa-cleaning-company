@@ -8,10 +8,10 @@
 <html lang="en">
 
     
-<!-- Mirrored from coderthemes.com/hyper/saas/apps-ecommerce-customers.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Apr 2024 21:13:27 GMT -->
+<!-- Mirrored from coderthemes.com/hyper/saas/form-advanced.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Apr 2024 21:14:32 GMT -->
 <head>
         <meta charset="utf-8" />
-        <title>Settings | Hyper</title>
+        <title>Form Advanced | Hyper - Responsive Bootstrap 5 Admin Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -19,9 +19,23 @@
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-        <!-- Datatable css -->
-        <link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <!-- Select2 css -->
+        <link href="assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- Daterangepicker css -->
+        <link href="assets/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+        
+        <!-- Bootstrap Touchspin css -->
+        <link href="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- Bootstrap Datepicker css -->
+        <link href="assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- Bootstrap Timepicker css -->
+        <link href="assets/vendor/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- Flatpickr Timepicker css -->
+        <link href="assets/vendor/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
 
         <!-- Theme Config Js -->
         <script src="assets/js/hyper-config.js"></script>
@@ -441,6 +455,7 @@
                 </div>
             </div>
             <!-- ========== Topbar End ========== -->
+
             <!-- ========== Left Sidebar Start ========== -->
             <div class="leftside-menu">
 
@@ -480,7 +495,7 @@
                     <div class="leftbar-user">
                         <a href="pages-profile.html">
                             <img src="assets/images/users/avatar-1.jpg" alt="user-image" height="42" class="rounded-circle shadow-sm">
-                            <span class="leftbar-user-name mt-2">Dominic Keller</span>
+                            <span class="leftbar-user-name mt-2">Adeagbo Josiah</span>
                         </a>
                     </div>
 
@@ -492,7 +507,7 @@
                         <li class="side-nav-item">
                             <a href="index.php" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                                 <i class="uil-home-alt"></i>
-                                <span class="badge bg-success float-end"><?php echo getTotalAppointments(); ?></span>
+                                <span class="badge bg-success float-end">5</span>
                                 <span> Dashboards </span>
                             </a>
                         </li>
@@ -500,7 +515,7 @@
                         <li class="side-nav-title">Apps</li>
 
                         <li class="side-nav-item">
-                            <a href="projects.php" class="side-nav-link">
+                            <a href="blog.php" class="side-nav-link">
                                 <i class="uil-calender"></i>
                                 <span> Blog </span>
                             </a>
@@ -510,6 +525,13 @@
                             <a href="appointment.php" class="side-nav-link">
                                 <i class="uil-comments-alt"></i>
                                 <span> Appointment </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a href="gallery.php" class="side-nav-link">
+                                <i class="uil-calender"></i>
+                                <span> Gallery </span>
                             </a>
                         </li>
 
@@ -587,147 +609,106 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="index.php">Hyper</a></li>
-                                            <li class="breadcrumb-item"><a href="customers.php">Settings</a></li>
-                                            <li class="breadcrumb-item active">Settings</li>
+                                            <li class="breadcrumb-item"><a href="blog.php">Team</a></li>
+                                            <li class="breadcrumb-item active">Create Team</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">Settings</h4>
+                                    <h4 class="page-title">Create Team</h4>
                                 </div>
                             </div>
                         </div>
                         <!-- end page title -->
 
+                                              
+
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                
-                                        <div class="table-responsive">
-                                        <?=  alertMessage(); ?>
-                                            <table class="table table-centered table-striped dt-responsive nowrap w-100" id="products-datatable">
-                                                <thead>
-                                                    <tr>
-                                                        <th style="width: 20px;">
-                                                            <div class="form-check">
-                                                                <input type="checkbox" class="form-check-input" id="customCheck1">
-                                                                <label class="form-check-label" for="customCheck1">&nbsp;</label>
-                                                            </div>
-                                                        </th>
-                                                        <th>Title</th>
-                                                        <th>Email</th>
-                                                        <th>Phone 1</th>
-                                                        <th>Phone 2</th>
-                                                        <th>Copyright</th>
-                                                        <th>Address 1</th>
-                                                        <th>Address 2</th>
-                                                        <th>Url</th>
-                                                        <th>Status</th>
-                                                        <th style="width: 75px;">Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php 
-                                                    $customers = getAll('setting');
-                                                    if(mysqli_num_rows($customers) > 0){
-                                                        foreach($customers as $userItem){
-                                                            ?>
-                                                                 <tr>
-                                                        <td>
-                                                            <div class="form-check">
-                                                                <input type="checkbox" class="form-check-input" id="customCheck2">
-                                                                <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                                            </div>
-                                                        </td>
-                                                        
-                                                        <td>
-                                                            <?= $userItem['title']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['email']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['phone']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['phone2']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['copyright']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['address']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['address2']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['url']; ?>
-                                                        </td>
-                                                        <td>
-                                                            <span class="badge badge-success-lighten">Active</span>
-                                                        </td>
-                    
-                                                        <td>
-                                                            <a href="settings-edit.php?id=<?= $userItem['id']; ?>" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                            <a href="settings-delete.php?id=<?= $userItem['id']; ?>" 
-                                                            class="action-icon delete-btn" data-id="<?= $userItem['id']; ?>"> <i class="mdi mdi-delete"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                            <?php
-                                                        }
-                                                    }else{
-                                                        ?>
-                                                        <tr>
-                                                            <td colspan="10">
-                                                                No Records Found
-                                                            </td>
-                                                        </tr>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                   
-                                                    
-                                                    
-                                                   
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div> <!-- end card-body-->
+                                        <h4 class="header-title">Create Team</h4>
+                                        <p class="text-muted font-14">
+                                            Create and upload team.
+                                        </p>
+
+                                        <ul class="nav nav-tabs nav-bordered mb-3">
+                                            <li class="nav-item">
+                                                <a href="#typeahead-preview" data-bs-toggle="tab" aria-expanded="false" class="nav-link active">
+                                                    Create
+                                                </a>
+                                            </li>
+                                            
+                                        </ul> <!-- end nav-->
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="typeahead-preview">
+                                            <?=  alertMessage(); ?>
+                                                <form action="team-code.php" method="POST" enctype="multipart/form-data">
+
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Name</label>
+                                                            <input type="text" name="name" class="form-control" data-provide="typeahead" placeholder="Name">
+                                                        </div>
+                                                    </div> <!-- end col -->
+        
+                                                    <div class="col-lg-6 mt-3 mt-lg-0">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Position</label>
+                                                            <input id="bloodhound" name="position" class="form-control" type="text" placeholder="Manager etc...">
+                                                        </div>
+                                                    </div> <!-- end col -->
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Instagram Link</label>
+                                                            <input type="text" name="instagram" class="form-control" data-provide="typeahead" placeholder="https://www.instagram.com/">
+                                                        </div>
+                                                    </div> <!-- end col -->
+        
+                                                    <div class="col-lg-6 mt-3 mt-lg-0">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Facebook Link</label>
+                                                            <input id="bloodhound" name="facebook" class="form-control" type="text" placeholder="https://www.facebook.com/">
+                                                        </div>
+                                                    </div> <!-- end col -->
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Twitter Link</label>
+                                                            <input type="text" name="twitter" class="form-control" data-provide="typeahead" placeholder="https://www.twitter.com/">
+                                                        </div>
+                                                    </div> <!-- end col -->
+        
+                                                    <div class="row g-2">
+                                                        <div class="col-sm-6">
+                                                            <label class="form-label">Team Image</label>
+                                                            <input class="form-control" name="team_image" accept="image/*" type="file" id="image" required>
+                                                        </div>
+                                                    </div> <!-- end col -->
+                                                </div>                     
+                                            </div><br>
+                                            <button type="submit" name="createTeam" class="btn btn-primary">Create Team</button>
+                                            </form> <!-- end preview-->
+                                        </div> <!-- end tab-content-->
+
+                                    </div>
+                                                <!-- end row -->                      
+                                            </div> <!-- end preview-->
+                                        </div> <!-- end tab-content-->
+
+                                    </div> <!-- end card-body -->
                                 </div> <!-- end card-->
                             </div> <!-- end col -->
                         </div>
                         <!-- end row -->
-                        
+
+
                     </div> <!-- container -->
 
                 </div> <!-- content -->
-                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.delete-btn').forEach(item => {
-        item.addEventListener('click', function(event) {
-            event.preventDefault();
-            const userId = this.getAttribute('data-id');
-
-            // Display SweetAlert confirmation dialog
-            Swal.fire({
-                title: 'Are you sure?',
-                text: 'You will not be able to recover this user!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                // If user confirms deletion, redirect to delete script with user ID
-                if (result.isConfirmed) {
-                    window.location.href = 'settings-delete.php?id=' + userId;
-                }
-            });
-        });
-    });
-});
-</script>
                 <!-- Footer Start -->
                 <footer class="footer">
                     <div class="container-fluid">
@@ -1447,20 +1428,50 @@ document.addEventListener('DOMContentLoaded', function() {
         <!-- Vendor js -->
         <script src="assets/js/vendor.min.js"></script>
 
-        <!-- Datatable js -->
-        <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
-        <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-        <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
-        <script src="assets/vendor/jquery-datatables-checkboxes/js/dataTables.checkboxes.min.js"></script>
+        <!-- Code Highlight js -->
+        <script src="assets/vendor/highlightjs/highlight.pack.min.js"></script>
+        <script src="assets/vendor/clipboard/clipboard.min.js"></script>
+        <script src="assets/js/hyper-syntax.js"></script>
 
-        <!-- Settings Demo App js -->
-        <script src="assets/js/pages/demo.customers.js"></script>
+        <!--  Select2 Plugin Js -->
+        <script src="assets/vendor/select2/js/select2.min.js"></script>
+
+        <!-- Daterangepicker Plugin js -->
+        <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+        <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+
+        <!-- Bootstrap Datepicker Plugin js -->
+        <script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
+        <!-- Bootstrap Timepicker Plugin js -->
+        <script src="assets/vendor/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+
+        <!-- Input Mask Plugin js -->
+        <script src="assets/vendor/jquery-mask-plugin/jquery.mask.min.js"></script>
+
+        <!-- Bootstrap Touchspin Plugin js -->
+        <script src="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+
+        <!-- Bootstrap Maxlength Plugin js -->
+        <script src="assets/vendor/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+
+        <!-- Typehead Plugin js -->
+        <script src="assets/vendor/handlebars/handlebars.min.js"></script>
+        <script src="assets/vendor/typeahead.js/typeahead.bundle.min.js"></script>
+
+        <!-- Flatpickr Timepicker Plugin js -->
+        <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
+
+        <!-- Typehead Demo js -->
+        <script src="assets/js/pages/demo.typehead.js"></script>
+
+        <!-- Timepicker Demo js -->
+        <script src="assets/js/pages/demo.timepicker.js"></script>
 
         <!-- App js -->
         <script src="assets/js/app.min.js"></script>
 
     </body>
 
-<!-- Mirrored from coderthemes.com/hyper/saas/apps-ecommerce-customers.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Apr 2024 21:13:28 GMT -->
+<!-- Mirrored from coderthemes.com/hyper/saas/form-advanced.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Apr 2024 21:14:37 GMT -->
 </html>

@@ -492,7 +492,7 @@
                         <li class="side-nav-item">
                             <a href="index.php" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                                 <i class="uil-home-alt"></i>
-                                <span class="badge bg-success float-end">5</span>
+                                <span class="badge bg-success float-end"><?php echo getTotalAppointments(); ?></span>
                                 <span> Dashboards </span>
                             </a>
                         </li>
@@ -578,14 +578,7 @@
 
                     <!-- Start Content-->
                     <div class="container-fluid">
-    <?php 
-    // Assuming getAll() retrieves appointment details from the database
-    $appointments = getAll('appointment');
-    
-    if ($appointments !== false && mysqli_num_rows($appointments) > 0) {
-        // Loop through each appointment
-        while ($userItem = mysqli_fetch_assoc($appointments)) {
-    ?>
+   
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
@@ -600,7 +593,14 @@
                 </div>
             </div>
         </div>
-
+        <?php 
+    // Assuming getAll() retrieves appointment details from the database
+    $appointments = getAll('appointment');
+    
+    if ($appointments !== false && mysqli_num_rows($appointments) > 0) {
+        // Loop through each appointment
+        while ($userItem = mysqli_fetch_assoc($appointments)) {
+    ?>
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -620,6 +620,8 @@
                             </div>
                             <p><?= $userItem['message']; ?></p>
                             <p><b>Category:</b> <?= $userItem['category']; ?></p>
+                            <hr/>
+                            <p><b>Phone:</b> <?= $userItem['phone']; ?></p>
                             <hr/>
                             <td>
                                 <a style="width: 100px;" href="appointment-delete.php?id=<?= $userItem['id']; ?>" 

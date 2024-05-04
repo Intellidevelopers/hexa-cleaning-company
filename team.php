@@ -1,3 +1,9 @@
+<?php
+
+require './config/function.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -133,150 +139,48 @@
                                 <h2>Our Professionals</h2>
                         </div>
                         <div class="row">
+                        <?php
+                               // Query to fetch all team members
+                                $query = "SELECT * FROM team";
+                                $result = mysqli_query($conn, $query);
+
+                                // Check if query executed successfully
+                                if ($result && mysqli_num_rows($result) > 0) {
+                                // Loop through each row (post) in the result set
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                $postId = $row['id'];
+                                $name = $row['name'];
+                                $position = $row['position'];
+                                $facebook = $row['facebook'];
+                                $twitter = $row['twitter'];
+                                $instagram = $row['instagram'];
+                                $image_path = './admin/uploads/' . $row['team_image']; // Assuming 'blog_image' is the column name
+
+                                // Display each blog post on the frontend
+                                ?>
                                 <div class="col-md-4">
                                         <div class="team-member">
                                                 <div class="image">
-                                                        <img src="assets/img/team/team1.jpg" alt>
+                                                        <img src="<?php echo $image_path; ?>" alt>
                                                 </div>
                                                 <div class="ieam-text">
                                                         <ul>
-                                                                <li><a href> <i class="flaticon-facebook-logo"></i> </a></li>
-                                                                <li><a href> <i class="flaticon-twitter"></i> </a></li>
-                                                                <li><a href> <i class="flaticon-instagram"></i> </a></li>
+                                                                <li><a href="<?php echo $facebook; ?>" > <i class="flaticon-facebook-logo"></i> </a></li>
+                                                                <li><a href="<?php echo $twitter; ?>" > <i class="flaticon-twitter"></i> </a></li>
+                                                                <li><a href="<?php echo $instagram; ?>" > <i class="flaticon-instagram"></i> </a></li>
                                                         </ul>
-                                                        <h6>Mashil Nanchy</h6>
-                                                        <span>CEO</span>
+                                                        <h6> <?php echo $name; ?> </h6>
+                                                        <span> <?php echo $position; ?> </span>
                                                 </div>
                                         </div>
                                 </div>
-                                <div class="col-md-4">
-                                        <div class="team-member">
-                                                <div class="image">
-                                                        <img src="assets/img/team/team2.jpg" alt>
-                                                </div>
-                                                <div class="ieam-text">
-                                                        <ul>
-                                                                <li><a href> <i class="flaticon-facebook-logo"></i> </a></li>
-                                                                <li><a href> <i class="flaticon-twitter"></i> </a></li>
-                                                                <li><a href> <i class="flaticon-instagram"></i> </a></li>
-                                                        </ul>
-                                                        <h6>Devon Watson</h6>
-                                                        <span>Manager</span>
-                                                </div>
-                                        </div>
-                                </div>
-                                <div class="col-md-4">
-                                        <div class="team-member">
-                                                <div class="image">
-                                                        <img src="assets/img/team/team3.jpg" alt>
-                                                </div>
-                                                <div class="ieam-text">
-                                                        <ul>
-                                                                <li><a href> <i class="flaticon-facebook-logo"></i> </a></li>
-                                                                <li><a href> <i class="flaticon-twitter"></i> </a></li>
-                                                                <li><a href> <i class="flaticon-instagram"></i> </a></li>
-                                                        </ul>
-                                                        <h6>Beverley Coleman</h6>
-                                                        <span>Engineer</span>
-                                                </div>
-                                        </div>
-                                </div>
-                                <div class="col-md-4">
-                                        <div class="team-member">
-                                                <div class="image">
-                                                        <img src="assets/img/team/team4.jpg" alt>
-                                                </div>
-                                                <div class="ieam-text">
-                                                        <ul>
-                                                                <li><a href> <i class="flaticon-facebook-logo"></i> </a></li>
-                                                                <li><a href> <i class="flaticon-twitter"></i> </a></li>
-                                                                <li><a href> <i class="flaticon-instagram"></i> </a></li>
-                                                        </ul>
-                                                        <h6>Jared Perry</h6>
-                                                        <span>Cleaner</span>
-                                                </div>
-                                        </div>
-                                </div>
-                                <div class="col-md-4">
-                                        <div class="team-member">
-                                                <div class="image">
-                                                        <img src="assets/img/team/team5.jpg" alt>
-                                                </div>
-                                                <div class="ieam-text">
-                                                        <ul>
-                                                                <li><a href> <i class="flaticon-facebook-logo"></i> </a></li>
-                                                                <li><a href> <i class="flaticon-twitter"></i> </a></li>
-                                                                <li><a href> <i class="flaticon-instagram"></i> </a></li>
-                                                        </ul>
-                                                        <h6>Marie Soto</h6>
-                                                        <span>Cleaner</span>
-                                                </div>
-                                        </div>
-                                </div>
-                                <div class="col-md-4">
-                                        <div class="team-member">
-                                                <div class="image">
-                                                        <img src="assets/img/team/team6.jpg" alt>
-                                                </div>
-                                                <div class="ieam-text">
-                                                        <ul>
-                                                                <li><a href> <i class="flaticon-facebook-logo"></i> </a></li>
-                                                                <li><a href> <i class="flaticon-twitter"></i> </a></li>
-                                                                <li><a href> <i class="flaticon-instagram"></i> </a></li>
-                                                        </ul>
-                                                        <h6>Ruben Green</h6>
-                                                        <span>Cleaner</span>
-                                                </div>
-                                        </div>
-                                </div>
-                                <div class="col-md-4">
-                                        <div class="team-member">
-                                                <div class="image">
-                                                        <img src="assets/img/team/team7.jpg" alt>
-                                                </div>
-                                                <div class="ieam-text">
-                                                        <ul>
-                                                                <li><a href> <i class="flaticon-facebook-logo"></i> </a></li>
-                                                                <li><a href> <i class="flaticon-twitter"></i> </a></li>
-                                                                <li><a href> <i class="flaticon-instagram"></i> </a></li>
-                                                        </ul>
-                                                        <h6>Hailey Ryan</h6>
-                                                        <span>Cleaner</span>
-                                                </div>
-                                        </div>
-                                </div>
-                                <div class="col-md-4">
-                                        <div class="team-member">
-                                                <div class="image">
-                                                        <img src="assets/img/team/team8.jpg" alt>
-                                                </div>
-                                                <div class="ieam-text">
-                                                        <ul>
-                                                                <li><a href> <i class="flaticon-facebook-logo"></i> </a></li>
-                                                                <li><a href> <i class="flaticon-twitter"></i> </a></li>
-                                                                <li><a href> <i class="flaticon-instagram"></i> </a></li>
-                                                        </ul>
-                                                        <h6>Beverley Morrison</h6>
-                                                        <span>Cleaner</span>
-                                                </div>
-                                        </div>
-                                </div>
-                                <div class="col-md-4">
-                                        <div class="team-member">
-                                                <div class="image">
-                                                        <img src="assets/img/team/team9.jpg" alt>
-                                                </div>
-                                                <div class="ieam-text">
-                                                        <ul>
-                                                                <li><a href> <i class="flaticon-facebook-logo"></i> </a></li>
-                                                                <li><a href> <i class="flaticon-twitter"></i> </a></li>
-                                                                <li><a href> <i class="flaticon-instagram"></i> </a></li>
-                                                        </ul>
-                                                        <h6>Minnie Sims</h6>
-                                                        <span>Cleaner</span>
-                                                </div>
-                                        </div>
-                                </div>
+                                <?php
+                                }
+                                } else {
+                                echo "No blog posts found.";
+                                }
+                                ?>
+                                
                         </div>
                 </div>
         </div>

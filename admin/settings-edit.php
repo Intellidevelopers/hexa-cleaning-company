@@ -697,6 +697,12 @@
                                                             <input type="text" name="url" value="<?= $user['data']['url']; ?>" class="form-control" placeholder="Url">
                                                         </div>
                                                     </div>
+                                                    <div class="col-lg-6 mt-3 mt-lg-0">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Footer Description</label>
+                                                            <input type="text" name="description" value="<?= $user['data']['description']; ?>" class="form-control" placeholder="Description">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                                         <br>

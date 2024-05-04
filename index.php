@@ -89,7 +89,6 @@ if(mysqli_num_rows($setting) > 0){
                 <i class="fas fa-angle-up scrollup-icon"></i>
         </button>
 
-
         <header class="header-area">
                 <div class="container">
                         <div class="row align-items-center">
@@ -120,8 +119,8 @@ if(mysqli_num_rows($setting) > 0){
                                                         </nav>
                                                 </div>
                                                 <div class="top-button">
-                                                        <a href="tel:<?= $userItem['phone']; ?>" class="btn-1"><i
-                                                                        class="flaticon-phone-call"></i> <?= $userItem['phone']; ?> </a>
+                                                        <a href="tel:+123456987" class="btn-1"><i
+                                                                        class="flaticon-phone-call"></i>  <?= $userItem['phone'] ?> </a>
                                                 </div>
                                         </div>
                                 </div>
@@ -138,10 +137,7 @@ if(mysqli_num_rows($setting) > 0){
                                                 <h1 data-aos="fade-up" data-aos-duration="1500">Reliable cleaning agency
                                                         with best equipment
                                                 </h1>
-                                                <p data-aos="fade-up" data-aos-duration="2000">Nunc sed augue lacus
-                                                        viverra vitae congue. Enim
-                                                        tortor at auctor urna nunc id cursus. Cursus turpis massa
-                                                        tincidunt.</p>
+                                                <p data-aos="fade-up" data-aos-duration="2000"><?= $userItem['description'] ?></p>
                                                 <div class="hero-links" data-aos="fade-up" data-aos-duration="3000">
                                                         <div class="single-link">
                                                                 <a href data-toggle="modal" data-target="#myModal"
@@ -211,7 +207,6 @@ if(mysqli_num_rows($setting) > 0){
                         </div>
                 </div>
         </div>
-
 
         <div class="protect" data-aos="fade-up" data-aos-duration="1500">
                 <div class="container">
@@ -380,50 +375,40 @@ if(mysqli_num_rows($setting) > 0){
                         </div>
                 </div>
                 <div class="service-slider owl-carousel owl-theme">
+                <?php
+                               // Query to fetch all team members
+                                $query = "SELECT * FROM projects";
+                                $result = mysqli_query($conn, $query);
+
+                                // Check if query executed successfully
+                                if ($result && mysqli_num_rows($result) > 0) {
+                                // Loop through each row (post) in the result set
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                $postId = $row['id'];
+                                $title = $row['title'];
+                                $professional = $row['professional'];
+                                $image_path = './admin/uploads/' . $row['project_image']; // Assuming 'blog_image' is the column name
+
+                                // Display each blog post on the frontend
+                                ?>
                         <div class="item">
                                 <div class="single-service-slide" data-aos="fade-up" data-aos-duration="1500">
                                         <div class="sss-img">
-                                                <img src="assets/img/slider-img/service-slider1.jpg" alt>
+                                                <img src="<?php echo $image_path; ?>" alt>
                                         </div>
                                         <div class="sss-text">
-                                                <p>Professional Services</p>
-                                                <h4>House Cleaning</h4>
+                                                <p> <?php echo $professional; ?> </p>
+                                                <h4> <?php echo $title; ?> </h4>
                                         </div>
                                 </div>
                         </div>
-                        <div class="item">
-                                <div class="single-service-slide" data-aos="fade-up" data-aos-duration="2000">
-                                        <div class="sss-img">
-                                                <img src="assets/img/slider-img/service-slider2.jpg" alt>
-                                        </div>
-                                        <div class="sss-text">
-                                                <p>Professional Services</p>
-                                                <h4>Office Cleaning</h4>
-                                        </div>
-                                </div>
-                        </div>
-                        <div class="item">
-                                <div class="single-service-slide" data-aos="fade-up" data-aos-duration="3000">
-                                        <div class="sss-img">
-                                                <img src="assets/img/slider-img/service-slider3.jpg" alt>
-                                        </div>
-                                        <div class="sss-text">
-                                                <p>Professional Services</p>
-                                                <h4>Commercial Cleaning</h4>
-                                        </div>
-                                </div>
-                        </div>
-                        <div class="item">
-                                <div class="single-service-slide" data-aos="fade-up" data-aos-duration="1500">
-                                        <div class="sss-img">
-                                                <img src="assets/img/slider-img/service-slider2.jpg" alt>
-                                        </div>
-                                        <div class="sss-text">
-                                                <p>Professional Services</p>
-                                                <h4>House Cleaning</h4>
-                                        </div>
-                                </div>
-                        </div>
+                        <?php
+                                }
+                                } else {
+                                echo "No blog posts found.";
+                                }
+                                ?>
+                       
                 </div>
         </div>
 
@@ -638,8 +623,7 @@ if(mysqli_num_rows($setting) > 0){
                                 <div class="col-md-4">
                                         <div class="footer-logo-area">
                                                 <img src="assets/img/logo.png" alt>
-                                                <p>Hexa is the professional cleaning agency in Ibadan Oyo State.
-                                                        We have 15+ professional experience in this sectors. </p>
+                                                <p><?= $userItem['description']; ?></p>
                                                 <ul>
                                                         <li><a href> <i class="flaticon-facebook-logo"></i> </a></li>
                                                         <li><a href> <i class="flaticon-twitter"></i> </a></li>
@@ -653,30 +637,27 @@ if(mysqli_num_rows($setting) > 0){
                                                 <div class="page-links">
                                                         <h6>Our Services</h6>
                                                         <ul>
-                                                                <li><a href><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
-                                                                                Office Cleaning</a></li>
-                                                                <li><a href><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
-                                                                                Commercial Cleaning</a></li>
-                                                                <li><a href><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
-                                                                                Building Cleaning</a></li>
-                                                                <li><a href><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
-                                                                                Deep
-                                                                                Cleaning</a></li>
+                                                                <li><a href="faq.php"><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
+                                                                                Faq</a></li>
+                                                                <li><a href="pricing.php"><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
+                                                                                Pricing</a></li>
+                                                                <li><a href="team.php"><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
+                                                                                Team</a></li>
+                                                                <li><a href="project.php"><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
+                                                                                Projects</a></li>
                                                         </ul>
                                                 </div>
                                                 <div class="page-links">
                                                         <h6>Quick Links</h6>
                                                         <ul>
-                                                                <li><a href><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
+                                                                <li><a href="about-us.php"><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
                                                                                 About
                                                                                 Us</a></li>
-                                                                <li><a href><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
+                                                                <li><a href="contact.php"><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
                                                                                 Appointment</a></li>
-                                                                <li><a href><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
+                                                                <li><a href="blog.php"><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
                                                                                 Blog</a></li>
-                                                                <li><a href><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
-                                                                                Terms
-                                                                                & Condition </a></li>
+                                                                
                                                         </ul>
                                                 </div>
                                                 <div class="page-links">

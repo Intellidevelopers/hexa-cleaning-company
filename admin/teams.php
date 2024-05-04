@@ -8,20 +8,16 @@
 <html lang="en">
 
     
-<!-- Mirrored from coderthemes.com/hyper/saas/apps-ecommerce-customers.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Apr 2024 21:13:27 GMT -->
+<!-- Mirrored from coderthemes.com/hyper/saas/apps-projects-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Apr 2024 21:13:35 GMT -->
 <head>
         <meta charset="utf-8" />
-        <title>Settings | Hyper</title>
+        <title>Projects | Hyper - Responsive Bootstrap 5 Admin Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
 
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
-
-        <!-- Datatable css -->
-        <link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
 
         <!-- Theme Config Js -->
         <script src="assets/js/hyper-config.js"></script>
@@ -31,6 +27,7 @@
 
         <!-- Icons css -->
         <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     </head>
 
     <body>
@@ -586,148 +583,149 @@
                                 <div class="page-title-box">
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="index.php">Hyper</a></li>
-                                            <li class="breadcrumb-item"><a href="customers.php">Settings</a></li>
-                                            <li class="breadcrumb-item active">Settings</li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Projects</a></li>
+                                            <li class="breadcrumb-item active">Projects List</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">Settings</h4>
+                                    <h4 class="page-title">Projects List</h4>
                                 </div>
                             </div>
                         </div>
                         <!-- end page title -->
 
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <a href="create-team.php" class="btn btn-danger rounded-pill mb-3"><i class="mdi mdi-plus"></i> Create Team</a>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="text-sm-end">
+                                    <div class="btn-group mb-3">
+                                        <button type="button" class="btn btn-primary">All</button>
+                                    </div>
+                                    <div class="btn-group mb-3 ms-1">
+                                        <button type="button" class="btn btn-light">Ongoing</button>
+                                        <button type="button" class="btn btn-light">Finished</button>
+                                    </div>
+                                    <div class="btn-group mb-3 ms-2 d-none d-sm-inline-block">
+                                        <button type="button" class="btn btn-secondary"><i class="ri-function-line"></i></button>
+                                    </div>
+                                    <div class="btn-group mb-3 d-none d-sm-inline-block">
+                                        <button type="button" class="btn btn-link text-muted"><i class="ri-list-check-2"></i></button>
+                                    </div>
+                                </div>
+                            </div><!-- end col-->
+                        </div> 
+                        <!-- end row-->
+
                         <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                
-                                        <div class="table-responsive">
-                                        <?=  alertMessage(); ?>
-                                            <table class="table table-centered table-striped dt-responsive nowrap w-100" id="products-datatable">
-                                                <thead>
-                                                    <tr>
-                                                        <th style="width: 20px;">
-                                                            <div class="form-check">
-                                                                <input type="checkbox" class="form-check-input" id="customCheck1">
-                                                                <label class="form-check-label" for="customCheck1">&nbsp;</label>
-                                                            </div>
-                                                        </th>
-                                                        <th>Title</th>
-                                                        <th>Email</th>
-                                                        <th>Phone 1</th>
-                                                        <th>Phone 2</th>
-                                                        <th>Copyright</th>
-                                                        <th>Address 1</th>
-                                                        <th>Address 2</th>
-                                                        <th>Url</th>
-                                                        <th>Status</th>
-                                                        <th style="width: 75px;">Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php 
-                                                    $customers = getAll('setting');
-                                                    if(mysqli_num_rows($customers) > 0){
-                                                        foreach($customers as $userItem){
-                                                            ?>
-                                                                 <tr>
-                                                        <td>
-                                                            <div class="form-check">
-                                                                <input type="checkbox" class="form-check-input" id="customCheck2">
-                                                                <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                                            </div>
-                                                        </td>
-                                                        
-                                                        <td>
-                                                            <?= $userItem['title']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['email']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['phone']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['phone2']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['copyright']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['address']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['address2']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['url']; ?>
-                                                        </td>
-                                                        <td>
-                                                            <span class="badge badge-success-lighten">Active</span>
-                                                        </td>
-                    
-                                                        <td>
-                                                            <a href="settings-edit.php?id=<?= $userItem['id']; ?>" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                            <a href="settings-delete.php?id=<?= $userItem['id']; ?>" 
-                                                            class="action-icon delete-btn" data-id="<?= $userItem['id']; ?>"> <i class="mdi mdi-delete"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                            <?php
-                                                        }
-                                                    }else{
-                                                        ?>
-                                                        <tr>
-                                                            <td colspan="10">
-                                                                No Records Found
-                                                            </td>
-                                                        </tr>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                   
-                                                    
-                                                    
-                                                   
-                                                </tbody>
-                                            </table>
+                                <!-- project card -->
+                                <?php
+// Assuming you have established a database connection earlier in your script
+$conn = mysqli_connect('localhost', 'root', '', 'cleaningcompany');
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Fetch projects data from the database
+$team = mysqli_query($conn, "SELECT * FROM team");
+
+if ($team !== false && mysqli_num_rows($team) > 0) {
+    while ($userItem = mysqli_fetch_assoc($team)) {
+        // Fetch image data for the current project
+        $sql_image = "SELECT team_image FROM team WHERE id = " . $userItem['id'];
+        $result_image = mysqli_query($conn, $sql_image);
+
+        if ($result_image !== false && mysqli_num_rows($result_image) > 0) {
+            $row_image = mysqli_fetch_assoc($result_image);
+            $image_path = 'uploads/' . $row_image['team_image'];
+        } else {
+            $image_path = ''; // Set a default image path if no image found
+        }
+?>
+                            <div class="col-md-6 col-xxl-3">
+                                <!-- project card -->
+                                <div class="card d-block">
+                                    <!-- project-thumbnail -->
+                                    <img class="card-img-top" src="<?php echo $image_path; ?>" alt="project image cap">
+                                    <div class="card-img-overlay">
+                                        <div class="badge text-bg-secondary p-1"><?= $userItem['position']; ?></div>
+                                    </div>
+
+                                    <div class="card-body position-relative">
+                                        <!-- project title-->
+                                        <h4 class="mt-0 text-center">
+                                            <a href="apps-team-details.html" class="text-title"><?= $userItem['name']; ?></a>
+                                            <div class="col-xl-3 text-center col-lg-4 col-sm-6">
+                                            <a href="<?= $userItem['facebook']; ?>"><i class='uil uil-facebook'></i></a>
+                                            <a href="<?= $userItem['instagram']; ?>"><i class='uil uil-instagram-alt'></i></a>
+                                            <a href="<?= $userItem['twitter']; ?>"><i class='uil uil-twitter'></i></a>
                                         </div>
+                                        </h4>
+                                        
+
+                                        <!-- project detail-->
+                                        <a style="width: 100px;" href="team-edit.php?id=<?= $userItem['id']; ?>">
+                                            <button type="button" class="btn btn-primary">Edit Team</button>
+                                        </a>
+                                        <a style="width: 100px;" href="project-delete.php?id=<?= $userItem['id']; ?>" class="action-icon delete-btn" data-id="<?= $userItem['id']; ?>">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="button">Delete Team</button>
+                                        </a>
+
+                                        <!-- /.progress -->
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
                             </div> <!-- end col -->
+                            <?php
+                                }
+                            } else {
+                                // Display a message if no records found
+                                echo "<div class='card'><div class='card-body'><p>No Records Found</p></div></div>";
+                            }
+
+                            // Close the database connection
+                            mysqli_close($conn);
+                            ?>
+                            <!-- end card-->
                         </div>
-                        <!-- end row -->
+                        <!-- end row-->
+
+                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+                        <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            document.querySelectorAll('.delete-btn').forEach(item => {
+                                item.addEventListener('click', function(event) {
+                                    event.preventDefault();
+                                    const userId = this.getAttribute('data-id');
+
+                                    // Display SweetAlert confirmation dialog
+                                    Swal.fire({
+                                        title: 'Are you sure?',
+                                        text: 'You will not be able to recover this user!',
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonText: 'Yes, delete it!',
+                                        cancelButtonText: 'Cancel'
+                                    }).then((result) => {
+                                        // If user confirms deletion, redirect to delete script with user ID
+                                        if (result.isConfirmed) {
+                                            window.location.href = 'team-delete.php?id=' + userId;
+                                        }
+                                    });
+                                });
+                            });
+                        });
+                        </script>
+
+                            
+                        </div>
+                        <!-- end row-->
                         
                     </div> <!-- container -->
 
                 </div> <!-- content -->
-                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.delete-btn').forEach(item => {
-        item.addEventListener('click', function(event) {
-            event.preventDefault();
-            const userId = this.getAttribute('data-id');
-
-            // Display SweetAlert confirmation dialog
-            Swal.fire({
-                title: 'Are you sure?',
-                text: 'You will not be able to recover this user!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                // If user confirms deletion, redirect to delete script with user ID
-                if (result.isConfirmed) {
-                    window.location.href = 'settings-delete.php?id=' + userId;
-                }
-            });
-        });
-    });
-});
-</script>
                 <!-- Footer Start -->
                 <footer class="footer">
                     <div class="container-fluid">
@@ -1446,21 +1444,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         <!-- Vendor js -->
         <script src="assets/js/vendor.min.js"></script>
-
-        <!-- Datatable js -->
-        <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
-        <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-        <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
-        <script src="assets/vendor/jquery-datatables-checkboxes/js/dataTables.checkboxes.min.js"></script>
-
-        <!-- Settings Demo App js -->
-        <script src="assets/js/pages/demo.customers.js"></script>
-
+        
         <!-- App js -->
         <script src="assets/js/app.min.js"></script>
 
     </body>
 
-<!-- Mirrored from coderthemes.com/hyper/saas/apps-ecommerce-customers.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Apr 2024 21:13:28 GMT -->
+<!-- Mirrored from coderthemes.com/hyper/saas/apps-team-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Apr 2024 21:13:36 GMT -->
 </html>

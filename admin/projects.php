@@ -1,3 +1,9 @@
+<?php
+
+    require '../config/function.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -482,7 +488,7 @@
                         <li class="side-nav-item">
                             <a href="index.php" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                                 <i class="uil-home-alt"></i>
-                                <span class="badge bg-success float-end">5</span>
+                                <span class="badge bg-success float-end"><?php echo getTotalAppointments(); ?></span>
                                 <span> Dashboards </span>
                             </a>
                         </li>
@@ -654,44 +660,54 @@ if ($projects !== false && mysqli_num_rows($projects) > 0) {
 
                                         <!-- project detail-->
                                         
-                                        <div class="mb-3" id="tooltip-container4">
-                                            <a href="javascript:void(0);" data-bs-container="#tooltip-container4" data-bs-toggle="tooltip" data-bs-placement="top" title="Mat Helme" class="d-inline-block">
-                                                <img src="assets/images/users/avatar-3.jpg" class="rounded-circle avatar-xs" alt="friend">
-                                            </a>
-    
-                                            <a href="javascript:void(0);" data-bs-container="#tooltip-container4" data-bs-toggle="tooltip" data-bs-placement="top" title="Michael Zenaty" class="d-inline-block">
-                                                <img src="assets/images/users/avatar-5.jpg" class="rounded-circle avatar-xs" alt="friend">
-                                            </a>
-    
-                                            <a href="javascript:void(0);" data-bs-container="#tooltip-container4" data-bs-toggle="tooltip" data-bs-placement="top" title="James Anderson" class="d-inline-block">
-                                                <img src="assets/images/users/avatar-9.jpg" class="rounded-circle avatar-xs" alt="friend">
-                                            </a>
-                                        </div>
+                                        <a style="width: 100px;" href="project-delete.php?id=<?= $userItem['id']; ?>" class="action-icon delete-btn" data-id="<?= $userItem['id']; ?>">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="button">Delete Plan</button>
+                                        </a>
 
-                                        <!-- project progress-->
-                                        <p class="mb-2 fw-bold">Progress <span class="float-end">45%</span></p>
-                                        <div class="progress progress-sm">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-                                            </div><!-- /.progress-bar -->
-                                        </div><!-- /.progress -->
+                                        <!-- /.progress -->
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
                             </div> <!-- end col -->
-<?php
-    }
-} else {
-    // Display a message if no records found
-    echo "<div class='card'><div class='card-body'><p>No Records Found</p></div></div>";
-}
+                            <?php
+                                }
+                            } else {
+                                // Display a message if no records found
+                                echo "<div class='card'><div class='card-body'><p>No Records Found</p></div></div>";
+                            }
 
-// Close the database connection
-mysqli_close($conn);
-?>
-<!-- end card-->
+                            // Close the database connection
+                            mysqli_close($conn);
+                            ?>
+                            <!-- end card-->
                         </div>
                         <!-- end row-->
 
-                       
+                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+                        <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            document.querySelectorAll('.delete-btn').forEach(item => {
+                                item.addEventListener('click', function(event) {
+                                    event.preventDefault();
+                                    const userId = this.getAttribute('data-id');
+
+                                    // Display SweetAlert confirmation dialog
+                                    Swal.fire({
+                                        title: 'Are you sure?',
+                                        text: 'You will not be able to recover this user!',
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonText: 'Yes, delete it!',
+                                        cancelButtonText: 'Cancel'
+                                    }).then((result) => {
+                                        // If user confirms deletion, redirect to delete script with user ID
+                                        if (result.isConfirmed) {
+                                            window.location.href = 'project-delete.php?id=' + userId;
+                                        }
+                                    });
+                                });
+                            });
+                        });
+                        </script>
 
                             
                         </div>

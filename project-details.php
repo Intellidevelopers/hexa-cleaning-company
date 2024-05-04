@@ -230,18 +230,18 @@
 
         <div class="footer-area">
                 <div class="container">
-                        <div class="footer-top">
+                        <div class="footer-top" data-aos="fade-up" data-aos-duration="1000">
                                 <h4>Want to Get 50% Off?
                                         Save Time & Money</h4>
-                                <a href="tel:+123456987" class="btn-1"><i class="flaticon-phone-call"></i>(000) 123 456 987</a>
-                                <a data-toggle="modal" data-target="#myModal" href class="btn-2"> Appointment Now <i class="flaticon-right-arrow"></i></a>
+                                <a href="tel:<?= $userItem['phone']; ?>" class="btn-1"><i class="flaticon-phone-call"></i> <?= $userItem['phone']; ?> </a>
+                                <a data-toggle="modal" data-target="#myModal" href class="btn-2"> Appointment Now <i
+                                                class="flaticon-right-arrow"></i></a>
                         </div>
                         <div class="row">
                                 <div class="col-md-4">
                                         <div class="footer-logo-area">
                                                 <img src="assets/img/logo.png" alt>
-                                                <p>Hexa is the professional cleaning agency in New York Town.
-                                                        We have 15+ professional experience in this sectors. </p>
+                                                <p><?= $userItem['description']; ?></p>
                                                 <ul>
                                                         <li><a href> <i class="flaticon-facebook-logo"></i> </a></li>
                                                         <li><a href> <i class="flaticon-twitter"></i> </a></li>
@@ -255,35 +255,39 @@
                                                 <div class="page-links">
                                                         <h6>Our Services</h6>
                                                         <ul>
-                                                                <li><a href><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
-                                                                                Office Cleaning</a></li>
-                                                                <li><a href><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
-                                                                                Commercial Cleaning</a></li>
-                                                                <li><a href><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
-                                                                                Building Cleaning</a></li>
-                                                                <li><a href><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i> Dep
-                                                                                Cleaning</a></li>
+                                                                <li><a href="faq.php"><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
+                                                                                Faq</a></li>
+                                                                <li><a href="pricing.php"><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
+                                                                                Pricing</a></li>
+                                                                <li><a href="team.php"><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
+                                                                                Team</a></li>
+                                                                <li><a href="project.php"><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
+                                                                                Projects</a></li>
                                                         </ul>
                                                 </div>
                                                 <div class="page-links">
                                                         <h6>Quick Links</h6>
                                                         <ul>
-                                                                <li><a href><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i> About
+                                                                <li><a href="about-us.php"><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
+                                                                                About
                                                                                 Us</a></li>
-                                                                <li><a href><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
+                                                                <li><a href="contact.php"><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
                                                                                 Appointment</a></li>
-                                                                <li><a href><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
+                                                                <li><a href="blog.php"><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i>
                                                                                 Blog</a></li>
-                                                                <li><a href><i class="flaticon-play-filled-triangle-button-of-right-arrow"></i> Trams
-                                                                                & Condition </a></li>
+                                                                
                                                         </ul>
                                                 </div>
                                                 <div class="page-links">
                                                         <h6>Contact</h6>
                                                         <ul>
-                                                                <li><i class="flaticon-place con-icon"></i> 255 Brooklyn, New York, USA</li>
-                                                                <li><i class="flaticon-email con-icon"></i> <a href="https://demo.voidcoders.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2b42454d446b52445e59464a424705484446">[email&#160;protected]</a></li>
-                                                                <li><i class="flaticon-phone con-icon"></i> (000) 123 456 987</li>
+                                                                <li><i class="flaticon-place con-icon"></i> <?= $userItem['address']; ?> </li>
+                                                                <li><i class="flaticon-email con-icon"></i> <a
+                                                                                href="mailto:<?= $userItem['email']; ?>"
+                                                                                class="__cf_email__"
+                                                                                ><?= $userItem['email']; ?></a>
+                                                                </li>
+                                                                <li><i class="flaticon-phone con-icon"></i> <?= $userItem['phone']; ?> </li>
                                                         </ul>
                                                 </div>
                                         </div>

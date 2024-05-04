@@ -8,20 +8,16 @@
 <html lang="en">
 
     
-<!-- Mirrored from coderthemes.com/hyper/saas/apps-ecommerce-customers.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Apr 2024 21:13:27 GMT -->
+<!-- Mirrored from coderthemes.com/hyper/saas/form-elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Apr 2024 21:14:32 GMT -->
 <head>
         <meta charset="utf-8" />
-        <title>Settings | Hyper</title>
+        <title>Form Elements | Hyper - Responsive Bootstrap 5 Admin Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
 
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
-
-        <!-- Datatable css -->
-        <link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
 
         <!-- Theme Config Js -->
         <script src="assets/js/hyper-config.js"></script>
@@ -441,6 +437,7 @@
                 </div>
             </div>
             <!-- ========== Topbar End ========== -->
+            
             <!-- ========== Left Sidebar Start ========== -->
             <div class="leftside-menu">
 
@@ -492,7 +489,7 @@
                         <li class="side-nav-item">
                             <a href="index.php" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                                 <i class="uil-home-alt"></i>
-                                <span class="badge bg-success float-end"><?php echo getTotalAppointments(); ?></span>
+                                <span class="badge bg-success float-end">5</span>
                                 <span> Dashboards </span>
                             </a>
                         </li>
@@ -500,7 +497,7 @@
                         <li class="side-nav-title">Apps</li>
 
                         <li class="side-nav-item">
-                            <a href="projects.php" class="side-nav-link">
+                            <a href="blog.php" class="side-nav-link">
                                 <i class="uil-calender"></i>
                                 <span> Blog </span>
                             </a>
@@ -516,7 +513,7 @@
                         <li class="side-nav-item">
                             <a href="faq.php" class="side-nav-link">
                                 <i class="uil-comments-alt"></i>
-                                <span> Faq </span>
+                                <span> Plan </span>
                             </a>
                         </li>
 
@@ -587,112 +584,114 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="index.php">Hyper</a></li>
-                                            <li class="breadcrumb-item"><a href="customers.php">Settings</a></li>
-                                            <li class="breadcrumb-item active">Settings</li>
+                                            <li class="breadcrumb-item"><a href="sellers.php">Pricing Plan</a></li>
+                                            <li class="breadcrumb-item active">Add Plan</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">Settings</h4>
+                                    <h4 class="page-title">Add New Plan</h4>
                                 </div>
                             </div>
                         </div>
                         <!-- end page title -->
 
+                        
+
+                        <!-- Form row -->
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                
-                                        <div class="table-responsive">
-                                        <?=  alertMessage(); ?>
-                                            <table class="table table-centered table-striped dt-responsive nowrap w-100" id="products-datatable">
-                                                <thead>
-                                                    <tr>
-                                                        <th style="width: 20px;">
-                                                            <div class="form-check">
-                                                                <input type="checkbox" class="form-check-input" id="customCheck1">
-                                                                <label class="form-check-label" for="customCheck1">&nbsp;</label>
-                                                            </div>
-                                                        </th>
-                                                        <th>Title</th>
-                                                        <th>Email</th>
-                                                        <th>Phone 1</th>
-                                                        <th>Phone 2</th>
-                                                        <th>Copyright</th>
-                                                        <th>Address 1</th>
-                                                        <th>Address 2</th>
-                                                        <th>Url</th>
-                                                        <th>Status</th>
-                                                        <th style="width: 75px;">Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php 
-                                                    $customers = getAll('setting');
-                                                    if(mysqli_num_rows($customers) > 0){
-                                                        foreach($customers as $userItem){
+                                        <h4 class="header-title">Add Plan</h4>
+                                        <p class="text-muted font-14">
+                                            By adding <code>New Plan</code>, you can have control over the existing and current sellers in as well the customers list.
+                                        </p>
+
+                                        <ul class="nav nav-tabs nav-bordered mb-3">
+                                            <li class="nav-item">
+                                                <a href="#form-row-preview" data-bs-toggle="tab" aria-expanded="false" class="nav-link active">
+                                                    Create
+                                                </a>
+                                            </li>
+                                            
+                                        </ul> <!-- end nav-->
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="form-row-preview">
+                                                <?=  alertMessage(); ?>
+                                                <form action="pricing-code.php" method="post">
+                                                <?php
+                                                
+                                                $paramResult = checkParamId('id');
+                                                if(!is_numeric($paramResult)){
+                                                     echo '<h5>'.$paramResult.'</h5>';
+                                                     return false;
+                                                }
+
+                                                $user = getById('pricing', checkParamId('id'));
+                                                if($user['status'] == 200){
+                                                 
+                                                 ?>
+
+                                                    <input type="hidden" name="userId" value="<?= $user['data']['id']; ?>">
+
+                                                    <div class="row g-2"> 
+                                                        <div class="mb-3 col-md-6">
+                                                            <label for="inputEmail4" class="form-label">Title</label>
+                                                            <input type="text" class="form-control"  value="<?= $user['data']['title']; ?>" name="title" placeholder="Pricing plan">
+                                                        </div>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label for="inputPassword4" class="form-label">Amount</label>
+                                                            <input type="text" class="form-control"  value="<?= $user['data']['amount']; ?>" name="amount" placeholder="Plan answer">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row g-2"> 
+                                                        <div class="mb-3 col-md-6">
+                                                            <label for="inputEmail4" class="form-label">Per / hour rate</label>
+                                                            <input type="text" class="form-control"  value="<?= $user['data']['time_rate']; ?>" name="time_rate" placeholder="Pricing plan">
+                                                        </div>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label for="inputPassword4" class="form-label">Payment Link</label>
+                                                            <input title="Month, week, year etc..." type="text" class="form-control" value="<?= $user['data']['url']; ?>" name="url" placeholder="Plan answer">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row g-2"> 
+                                                        <div class="mb-3 col-md-6">
+                                                            <label for="inputEmail4" class="form-label">Service  1</label>
+                                                            <input type="text" class="form-control" value="<?= $user['data']['service_1']; ?>" name="service_1" placeholder="Pricing plan">
+                                                        </div>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label for="inputPassword4" class="form-label">Service 2</label>
+                                                            <input type="text" class="form-control" name="service_2" value="<?= $user['data']['service_2']; ?>" placeholder="Plan service_2">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row g-2"> 
+                                                        <div class="mb-3 col-md-6">
+                                                            <label for="inputEmail4" class="form-label">Service  3</label>
+                                                            <input type="text" class="form-control" value="<?= $user['data']['service_3']; ?>" name="service_3" placeholder="Pricing service_3">
+                                                        </div>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label for="inputPassword4" class="form-label">Service 4</label>
+                                                            <input type="text" class="form-control" value="<?= $user['data']['service_4']; ?>" name="service_4" placeholder="Plan service_4">
+                                                        </div>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label for="inputPassword4" class="form-label">Service 5</label>
+                                                            <input type="text" class="form-control" value="<?= $user['data']['service_5']; ?>" name="service_5" placeholder="Plan service_5">
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <button type="submit" name="updatePlan" class="btn btn-primary">Update Plan</button>
+                                                    <?php
+                                                            }else{
+                                                                echo '<h5>'.$user['message'].'</h5>';
+                                                            }
+
                                                             ?>
-                                                                 <tr>
-                                                        <td>
-                                                            <div class="form-check">
-                                                                <input type="checkbox" class="form-check-input" id="customCheck2">
-                                                                <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                                            </div>
-                                                        </td>
-                                                        
-                                                        <td>
-                                                            <?= $userItem['title']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['email']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['phone']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['phone2']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['copyright']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['address']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['address2']; ?>
-                                                        </td>
-                                                        <td>
-                                                        <?= $userItem['url']; ?>
-                                                        </td>
-                                                        <td>
-                                                            <span class="badge badge-success-lighten">Active</span>
-                                                        </td>
-                    
-                                                        <td>
-                                                            <a href="settings-edit.php?id=<?= $userItem['id']; ?>" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                            <a href="settings-delete.php?id=<?= $userItem['id']; ?>" 
-                                                            class="action-icon delete-btn" data-id="<?= $userItem['id']; ?>"> <i class="mdi mdi-delete"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                            <?php
-                                                        }
-                                                    }else{
-                                                        ?>
-                                                        <tr>
-                                                            <td colspan="10">
-                                                                No Records Found
-                                                            </td>
-                                                        </tr>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                   
-                                                    
-                                                    
-                                                   
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div> <!-- end card-body-->
+                                                </form>                      
+                                            </div> <!-- end preview-->
+                                        
+                                            
+                                        </div> <!-- end tab-content-->
+
+                                    </div> <!-- end card-body -->
                                 </div> <!-- end card-->
                             </div> <!-- end col -->
                         </div>
@@ -701,33 +700,7 @@
                     </div> <!-- container -->
 
                 </div> <!-- content -->
-                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.delete-btn').forEach(item => {
-        item.addEventListener('click', function(event) {
-            event.preventDefault();
-            const userId = this.getAttribute('data-id');
-
-            // Display SweetAlert confirmation dialog
-            Swal.fire({
-                title: 'Are you sure?',
-                text: 'You will not be able to recover this user!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                // If user confirms deletion, redirect to delete script with user ID
-                if (result.isConfirmed) {
-                    window.location.href = 'settings-delete.php?id=' + userId;
-                }
-            });
-        });
-    });
-});
-</script>
                 <!-- Footer Start -->
                 <footer class="footer">
                     <div class="container-fluid">
@@ -1447,20 +1420,15 @@ document.addEventListener('DOMContentLoaded', function() {
         <!-- Vendor js -->
         <script src="assets/js/vendor.min.js"></script>
 
-        <!-- Datatable js -->
-        <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
-        <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-        <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
-        <script src="assets/vendor/jquery-datatables-checkboxes/js/dataTables.checkboxes.min.js"></script>
-
-        <!-- Settings Demo App js -->
-        <script src="assets/js/pages/demo.customers.js"></script>
-
+        <!-- Code Highlight js -->
+        <script src="assets/vendor/highlightjs/highlight.pack.min.js"></script>
+        <script src="assets/vendor/clipboard/clipboard.min.js"></script>
+        <script src="assets/js/hyper-syntax.js"></script>
+        
         <!-- App js -->
         <script src="assets/js/app.min.js"></script>
 
     </body>
 
-<!-- Mirrored from coderthemes.com/hyper/saas/apps-ecommerce-customers.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Apr 2024 21:13:28 GMT -->
+<!-- Mirrored from coderthemes.com/hyper/saas/form-elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Apr 2024 21:14:32 GMT -->
 </html>
